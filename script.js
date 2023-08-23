@@ -41,7 +41,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
   // Sugerencia de cómo mostrar el array => showList(strangeArray);
   const newArray = strangeArray.filter((element) => typeof (element) === "string");
 
-  const arrayOrdenado = newArray.sort();
+  const arrayOrdenado = newArray.sort((a, b) => a.localeCompare(b, { sensitivity: 'base' }));
+  // Para ordenar alfabeticamente un array uso el metodo array.sort() 
+  //...Lo que pasa en este caso es que como el string "b is a letter" comienza con minuscula 
+  //y todos los demás strings con mayúsculas va a perder ponderancia en el orden y lo va a mandar al final... 
+  //pero utilizando el metodo localeCompare() compara los elementos a y b (los va a comparar todos en realidad) 
+  //y con { sensitivity: 'base' } nos aseguramos que no va a ser sensible a las diferencias entre mayusculas y minusculas.
 
   showList(arrayOrdenado);
 
